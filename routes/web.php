@@ -14,7 +14,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('categories');
 });
 
 Route::get('/test/user/profile/id/{id?}',function($id = null){
@@ -24,3 +24,6 @@ return "test".$id;
 Route::get('/blogforuandall',function(){
 return "thswisadsf sdhfdusghdf";
 })->name("blog");
+
+Route::get('/category', 'CategoryController@getAllCat');
+Route::get('/catadd', 'CategoryController@add');
