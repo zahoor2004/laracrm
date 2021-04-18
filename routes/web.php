@@ -14,7 +14,9 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('categories');
+    //return view('categories');
+    return view('welcome');
+
 });
 
 Route::get('/test/user/profile/id/{id?}',function($id = null){
