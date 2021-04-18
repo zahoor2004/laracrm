@@ -16,6 +16,11 @@ class CategoryController extends Controller
 
         //return Category::all();
 
+
+        //test
+
+        //
+
         Category::chunk(200, function ($flights) {
             foreach ($flights as $flight) {
 
