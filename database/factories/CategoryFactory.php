@@ -7,6 +7,7 @@ use App\Category;
 use Illuminate\Database\Eloquent\Factory;
 use Illuminate\Support\Str;
 
+
 class CategoryFactory extends Factory
 {
     /**
@@ -23,9 +24,11 @@ class CategoryFactory extends Factory
      */
     public function definition()
     {
-        /*return [
-            'name' => $this->faker->name(),
-            'description' => $this->faker->sentence(),
-        ];*/
+        return [
+            'name'  => $this->faker->firstName." ".$this->faker->lastName,
+            'description'       => $this->faker->sentence,
+            'photo'       => $this->faker->image('public/storage/photos', 400, 300, null, false),
+
+        ];
     }
 }

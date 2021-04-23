@@ -27,5 +27,8 @@ Route::get('/blogforuandall',function(){
 return "thswisadsf sdhfdusghdf";
 })->name("blog");
 
-Route::get('/category', 'CategoryController@getAllCat');
-Route::get('/catadd', 'CategoryController@add');
+Route::get('/category/list', 'CategoryController@getAllCat')->name('category');
+Route::get('/category/add', 'CategoryController@addform');
+Route::get('/category/edit/{id}', 'CategoryController@editform');
+Route::post('/category/save','CategoryController@saveCat');
+Route::get('/category/delete/{id}','CategoryController@delete_cat');

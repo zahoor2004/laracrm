@@ -1,12 +1,9 @@
 <?php
 
 use App\Category;
-
 use Faker\Factory;
-
+use Faker\Provider\Image;
 use Illuminate\Database\Seeder;
-
-
 
 class CategorySeeder extends Seeder
 {
@@ -19,10 +16,10 @@ class CategorySeeder extends Seeder
     {
  $faker = Factory::create();
  for($i=1; $i<10; $i++){
-\App\Category::create([
+Category::create([
 'name'  => $faker->name,
-'description' => $faker->sentence,
-
+'description' => $faker->paragraph,
+'photo' =>$faker->image('public/storage/photos',320,240, null, false),
 ]);
 
 
