@@ -18,8 +18,8 @@ class CategorySeeder extends Seeder
  for($i=1; $i<10; $i++){
 Category::create([
 'name'  => $faker->name,
-'description' => $faker->paragraph,
-'photo' =>$faker->image('public/storage/photos',320,240, null, false),
+'description' => $faker->sentence,
+'photo' =>$faker->image('public/photos',400,300, null, false),
 ]);
 
 

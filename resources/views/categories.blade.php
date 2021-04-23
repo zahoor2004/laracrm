@@ -3,11 +3,17 @@
 @section('body')
 <div class="row">
     <div class="col p-5 m-5 md-4">
-
+@if (\Session::has('success'))
+<div class="alert alert-success">
+    <ul>
+        <li>{!! \Session::get('success') !!}</li>
+    </ul>
+</div>
+@endif
         <div class="card-columns">
             @foreach ($categories as $item)
             <div class="card">
-                <img class="card-img-top" src="{{ url('storage/photos/'.$item->photo) }}" alt="">
+                <img class="card-img-top" src="{{ ('/photos/'.$item->photo) }}" alt="">
                 <div class="card-body">
                     <h4 class="card-title">{{$item->name}} </h4>
                     <p class="card-text">{{$item->description}} </p>

@@ -1,11 +1,13 @@
 <?php
 
 namespace App\Http\Controllers;
+
 use Illuminate\Http\File;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Input;
 
 use Symfony\Component\HttpFoundation\File\UploadedFile;
-use Symfony\Component\Console\Input\Input;
+
 
 
 
@@ -45,60 +47,37 @@ class CategoryController extends Controller
     public function saveCat(Request $req)
     {
 
-                    $d = $req->input();
-                    //dd($req->file('photo'));
 
-                    unset($d['_token']);
+        $d = $req->input();
+        $d2 = null;
+        //dd($req->file('photo'));
 
-                    if ($req->has('id')) {
-                        unset($d['id']);;
-                        $id = $req->input('id');
-                        $q = Category::where('id', $id);
-                        $q->update($d);
-                        return redirect('/category/list');
-                    } else {
+        unset($d['_token']);
 
-                        if($req->hasFile('photo')){
-
-                        //$path = Storage::putFile('public/storage/photos', $req->file('photo'));
-                        //$path = Storage::putFile('public/storage/photos', new File($req->file('photo')));
-
-                        $path = $req->photo->store('photos');
-                        // storage/app/photos
-
-                        //dd($path);
-                        $url = Storage::url($path);
-                        //dd($url);
-
-                        //return $extension = $req->photo->extension();
-
-                        //dd($req->files);
-                        //foreach($req->files as $x)
-                        //dd($x);
+        if ($req->has('id')) {
+            unset($d['id']);;
+            $id = $req->input('id');
+            $q = Category::where('id', $id);
+            $q->update($d);
+            return redirect('/category/list');
+        } else {
 
 
+            $fileName = time() . '.' . $req->photo->extension();
+            $req->photo->move(public_path('photos'), $fileName);
 
-                        $fileName = time().'.'.$req->photo->extension();
+            $d['photo'] = $fileName;
+        }
 
-                        $req->photo->move(public_path('photos'), $fileName);
-                        // crm/public/photos
+        $d2 = $d;
 
-                        $d['photo'] = $fileName;
+        $q = Category::create($d);
+        if ($q) {
 
-                        dd($d);
-                        }
-
-                        $q = Category::create($d);
-                        if ($q) {
-
-                            return back()->with('success','File uploaded successfully.')->with('file',$fileName);
-
-                            return redirect('/category/list');
-                        }
-                    }
-
-
+            return redirect('/category/list')->with('success', "Image upload file successfully ");                            // return redirect('/category/list');
+        }
     }
+
 
     public function delete_cat($id = null)
     {

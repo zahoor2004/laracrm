@@ -7,7 +7,6 @@ use App\Category;
 use Illuminate\Database\Eloquent\Factory;
 use Illuminate\Support\Str;
 
-
 class CategoryFactory extends Factory
 {
     /**
@@ -26,9 +25,10 @@ class CategoryFactory extends Factory
     {
         return [
             'name'  => $this->faker->firstName." ".$this->faker->lastName,
-            'description'       => $this->faker->sentence,
-            'photo'       => $this->faker->image('public/storage/photos', 400, 300, null, false),
 
+            'description'       => $this->faker->sentence,
+
+            'photo'       => $this->faker->image('public/photos', 400, 300, null, false),
         ];
     }
 }
