@@ -24,7 +24,7 @@ return "test".$id;
 })->name('profile');
 
 Route::get('/blogforuandall',function(){
-return "thswisadsf sdhfdusghdf";
+return "lara CRM";
 })->name("blog");
 
 Route::get('/category/list', 'CategoryController@getAllCat')->name('category');
